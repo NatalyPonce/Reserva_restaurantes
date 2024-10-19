@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu mesa - Restaurante Elegante</title>
+    <link rel="stylesheet" href="./css/reserva.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">Parrilladas</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Nueva Reserva</a></li>
+                    <li><a href="#">Historial</a></li>
+                </ul>
+                <div class="bell">
+                    <img src="./img/campana.png" alt="Notificaciones">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Reserva tu mesa</h1>
+        <p>Disfruta de una experiencia culinaria inolvidable.</p>
+    </section>
+
+    <section class="reservation-form">
+        <div class="form-container">
+            <h2>Haz tu reserva</h2>
+            <label for="nombre">A nombre de quién está la reserva:</label>
+            <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+
+            <label for="comensales">Número de comensales</label>
+            <div class="guest-control">
+                <button onclick="changeGuests(-1)">-</button>
+                <input type="number" id="cantidadComensales" value="1" min="1" max="10" readonly>
+                <button onclick="changeGuests(1)">+</button>
+            </div>
+
+            <label for="fecha">Fecha de la reserva</label>
+            <input type="date" id="fecha" class="input-field" required>
+
+            <label for="hora">Hora de ingreso</label>
+            <input type="time" id="hora" class="input-field" value="19:00">
+
+            <label for="horaSalida">Hora de salida</label>
+            <input type="time" id="horaSalida" class="input-field" value="21:00">
+
+            <button class="reserve-button" onclick="confirmarReserva()">Reservar ahora</button>
+        </div>
+    </section>
+
+    <!-- Contenedor del mensaje de confirmación -->
+    <div id="mensajeReserva" class="mensaje"></div>
+
+    <!-- Modal para el error de disponibilidad -->
+    <div id="modalError" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2 class="modal-title">Reservas no disponibles</h2>
+            <p>En el día seleccionado, solo hay espacio para <span id="disponibilidad"></span> personas y lo sobrepasas por <span id="sobrante"></span>. Inténtalo de nuevo en otra fecha.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024  - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="./js/reserva.js"></script>
+</body>
+</html>
