@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Historial de Reservaciones</title>
+    <link rel="stylesheet" href="styles2.css"> 
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Mi Restaurante</div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Reservaciones</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="bell">
+                <img src="bell.png" alt="Notificaciones">
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="hero">
+        <h1>Historial de Reservaciones</h1>
+        <p>Consulta el historial por cliente, día y hora</p>
+    </div>
+
+    <div class="reservation-form">
+        <div class="form-container">
+            <h2>Buscar Reservaciones</h2>
+            <form id="reservationForm" action="fetch_reservations.php" method="POST">
+                <input type="text" class="input-field" name="cliente" placeholder="Nombre del Cliente">
+                <input type="date" class="input-field" name="fecha" placeholder="Fecha">
+                <select class="input-field" name="hora">
+                    <option value="">Seleccionar Hora</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                </select>
+                <button type="submit" class="reserve-button">Buscar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title">Resultados de la Búsqueda</h2>
+            <div id="resultados">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Mi Restaurante. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function closeModal() {
+            document.getElementById('resultModal').style.display = 'none';
+        }
+
+        const form = document.getElementById('reservationForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('resultModal').style.display = 'block';
+            document.getElementById('resultados').innerHTML = `
+                <p>Cliente: Juan Pérez</p>
+                <p>Fecha: 2024-10-19</p>
+                <p>Hora: 13:00</p>
+                <p>Mesa: 5</p>
+            `;
+        });
+    </script>
+</body>
+</html>
